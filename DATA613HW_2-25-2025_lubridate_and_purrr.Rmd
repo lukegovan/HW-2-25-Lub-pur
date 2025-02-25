@@ -44,3 +44,15 @@ difference_result <- data.frame(
 
 print(difference_result)
 ```
+
+Exercise 3:Higher-order Functions with Purrr 
+Question 3: Using `map()` and `map_dbl()`, compute the mean, median, and standard deviation for each numeric vector in the list.
+```{r}
+#Create a numerical list
+num_lists <- list(c(4, 16, 25, 36, 49), c(2.3, 5.7, 8.1, 11.4), c(10, 20, 30, 40, 50))
+
+#Use mapdbl to find the mean median and sd
+map_dbl(num_lists, mean)
+map_dbl(num_lists, median)
+map_dbl(num_lists, sd)
+```
