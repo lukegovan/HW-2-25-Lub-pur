@@ -28,3 +28,19 @@ date_yqI <- data.frame(
 )
 print(date_yqI)
 ```
+
+Exercise 2: Complex Date Arithmetic
+Question 2: Given the following dates, compute the difference in months and weeks between each consecutive pair.
+```{r}
+#Sample dates
+sample_dates <- (c("2018-03-15", "2020-07-20", "2023-01-10", "2025-09-05"))
+#Parse 
+sample_dates <- as.Date(c("2018-03-15", "2020-07-20", "2023-01-10", "2025-09-05"))
+#Compute difference
+difference_result <- data.frame(
+  week_date = time_length(diff(sample_dates), "week"),
+  month_date = time_length(diff(sample_dates), "month")
+)
+
+print(difference_result)
+```
