@@ -56,3 +56,28 @@ map_dbl(num_lists, mean)
 map_dbl(num_lists, median)
 map_dbl(num_lists, sd)
 ```
+
+Exercise 4: Combining lubridate and purr
+Question 4: Given a list of mixed date formats, use map() and possibly() from purrr to safely convert them to date format and extract the month name.
+```{r}
+date_strings <- list("2023-06-10", "2022/12/25", "15-Aug-2021", "InvalidDate")
+
+#parse and then extract the month name
+#in order to extract the months actual name we need to use format %B
+#because we have an invalid date we need to have a NA when one of the function outputs fails
+extracted_month <- possibly(function(x){
+  parsed_date <- parse_date_time(x, orders = c("ymd", "dmy", "mdy"), quiet = TRUE)
+  format(parsed_date, "%B")
+}, otherwise = NA)
+
+#use map to apply the function
+monthnames <- map(date_strings, extracted_month)
+
+#print results
+resulting_month_name <- data.frame(
+  starting_mixed_dates = unlist(date_strings),
+  month_name = unlist(monthnames)
+)
+print(resulting_month_name)
+
+```
